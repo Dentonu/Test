@@ -18,6 +18,11 @@ jobs:
           paths:
             - output.txt
       - print_pipeline_id
+      - run: exit 1
+      - run:
+          name: on error
+          command: echo "Hello Error!"
+          when: on_fail
 
   print_output_file:
     docker:
