@@ -9,13 +9,11 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-      - save_cache:
-          key: v1-my-project-{{ checksum "Test" }}
+      - run: echo "hello world" > ~/output.txt
+      - persist_to_workspace:
+          root: ~/
           paths:
-            - Test  
+            - output.txt
 
   print_hey:
     docker:
@@ -26,10 +24,10 @@ jobs:
           name: "echo an env var that is part of our project"
           command: |
             echo $Main_VAR # this env var must be set within the project
-      - restore_cache:
-          keys:
-            - v1-my-project-{{ checksum "Test" }}
-            - v1-my-project-
+      - attach_workspace:
+          at: ~/
+      - run: cat ~/output.txt
+
 
   print_world:
     docker:
