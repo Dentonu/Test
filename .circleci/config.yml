@@ -17,8 +17,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Say hey"
-          command: "echo Hey, World!"
+          name: "echo an env var that is part of our project"
+          command: |
+            echo $My_VAR # this env var must be set within the project
 
   print_world:
     docker:
