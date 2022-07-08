@@ -13,9 +13,9 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
       - save_cache:
-          key: v1-my-project-{{ checksum "test" }}
+          key: v1-my-project-{{ checksum "Test" }}
           paths:
-            - ~/.m2  
+            - Test  
 
   print_hey:
     docker:
@@ -28,7 +28,7 @@ jobs:
             echo $Main_VAR # this env var must be set within the project
       - restore_cache:
           keys:
-            - v1-my-project-{{ checksum "test" }}
+            - v1-my-project-{{ checksum "Test" }}
             - v1-my-project-
 
   print_world:
