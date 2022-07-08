@@ -20,14 +20,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run:
-          name: "echo an env var that is part of our project"
-          command: |
-            echo $Main_VAR # this env var must be set within the project
       - attach_workspace:
           at: ~/
       - run: cat ~/output.txt
-
 
   print_world:
     docker:
