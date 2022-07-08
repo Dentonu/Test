@@ -2,6 +2,10 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 # My name is Daniel
 version: 2.1
+commands:
+  print_pipeline_id:
+    steps:
+      - run: echo ${CIRCLE_WORKFLOW_ID}
 
 jobs:
   save_hello_world_output:
@@ -13,6 +17,7 @@ jobs:
           root: ~/
           paths:
             - output.txt
+      - print_pipeline_id
 
   print_output_file:
     docker:
