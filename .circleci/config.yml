@@ -12,6 +12,11 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+      - save_cache:
+          key: v1-my-project-{{ checksum "project.clj" }}
+          paths:
+            - ~/.m2  
+
   print_hey:
     docker:
       - image: cimg/base:stable
@@ -21,6 +26,10 @@ jobs:
           name: "echo an env var that is part of our project"
           command: |
             echo $Main_VAR # this env var must be set within the project
+      - restore_cache:
+          keys:
+            - v1-my-project-{{ checksum "project.clj" }}
+            - v1-my-project-
 
   print_world:
     docker:
