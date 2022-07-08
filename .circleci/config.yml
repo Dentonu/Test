@@ -13,7 +13,7 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
       - save_cache:
-          key: v1-my-project-{{ checksum "circleci-project-setup" }}
+          key: v1-my-project-{{ checksum "Test" }}
           paths:
             - ~/.m2  
 
@@ -28,7 +28,7 @@ jobs:
             echo $Main_VAR # this env var must be set within the project
       - restore_cache:
           keys:
-            - v1-my-project-{{ checksum "circleci-project-setup" }}
+            - v1-my-project-{{ checksum "Test" }}
             - v1-my-project-
 
   print_world:
